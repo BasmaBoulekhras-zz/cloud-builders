@@ -3,7 +3,7 @@
 # Configurable parameters
 [ -z "$COMMAND" ] && echo "Need to set COMMAND" && exit 1;
 
-USERNAME=${USERNAME:-basmaboulekhras@gmail.com}
+USERNAME=${USERNAME:-basma_boulekhras}
 REMOTE_WORKSPACE=${REMOTE_WORKSPACE:-/home/${USERNAME}/workspace/}
 INSTANCE_NAME=${INSTANCE_NAME:-test}
 ZONE=${ZONE:-us-central1-b}
