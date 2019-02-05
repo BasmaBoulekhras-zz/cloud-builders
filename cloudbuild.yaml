@@ -1,9 +1,6 @@
 steps:
 - name: gcr.io/cloud-builders/gcloud
-  args: ['config', 'set', 'compute/zone', 'us-central1-b'] 
-  
-- name: gcr.io/cloud-builders/gcloud
-  args: ['compute', 'ssh', '--ssh-key-file', 'ssh-keys/public-ssh-keys.txt', 'test', '--command', 'ps -ejH', '--dry-run'] 
+  args: ['compute', 'ssh', '--project', 'adolfo-test', '--zone', 'us-central1-b', '--command', 'ps -ejH', '--dry-run'] 
 
 
 
