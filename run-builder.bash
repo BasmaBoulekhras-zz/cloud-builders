@@ -12,11 +12,13 @@ gcloud config set compute/zone ${ZONE}
 
 KEYNAME=builder-key
 
-ssh-keygen -t rsa -N "" -f ${KEYNAME} -C ${USERNAME} || true
-chmod 400 ${KEYNAME}*
+#ssh-keygen -t rsa -N "" -f ${KEYNAME} -C ${USERNAME} || true
+
+ssh-keygen -t rsa -f ~/.ssh/${KEYNAME} -C ${USERNAME}
+chmod 400 ~/.ssh/${KEYNAME}*
 
 cat > ssh-keys <<EOF
-${USERNAME}:$(cat ${KEYNAME}.pub)
+${USERNAME}:$(cat ~/.ssh/${KEYNAME}.pub)
 EOF
 
 gcloud compute instances add-metadata ${INSTANCE_NAME} --metadata block-project-ssh-keys=TRUE --metadata-from-file ssh-keys=ssh-keys
