@@ -1,6 +1,13 @@
 steps:
-- name: gcr.io/cloud-builders/gcloud
-  args: ['compute', 'ssh', '--ssh-key-file', 'ssh-keys/public-ssh-keys.txt', 'test', '--project', 'adolfo-test', '--zone', 'us-central1-b', '--command', 'ps -ejH', '--dry-run'] 
+##- name: gcr.io/cloud-builders/gcloud
+##  args: ['compute', 'ssh', '--ssh-key-file', 'ssh-keys/public-ssh-keys.txt', 'test', '--project', 'adolfo-test', '--zone', 'us-central1-b', '--command', 'ps -ejH', '--dry-run']
+  
+- name: gcr.io/$PROJECT_ID/remote-builder
+  waitFor: ["-"]
+  env:
+    - ZONE=us-central1-b
+    # Run a script from the local build context in a Docker container
+    - COMMAND=docker run -v /home/workspace:/workspace bash -xe /workspace/test-scripts/no-op.sh  
 
 
 
