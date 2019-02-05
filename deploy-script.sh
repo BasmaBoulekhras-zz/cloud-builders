@@ -1,8 +1,18 @@
 #!/bin/bash -xe
 
-deploy(branch,build) {
+ZONE=us-central1-b
+CLUSTER=adolfo-test
 
-    sh("helm upgrade --install backend k8s/contacts-service/ --set image.tag=branch.build")
+deploy() {
+
+  if [ "$1" == "master" -o "$1" == "develop" ] 
+  then
+    gcloud container clusters get-credentials --zone ${ZONE} ${CLUSTER}
+    helm upgrade --install "$3" "$4" --set image.tag=$1.$2
+  else
+  
+    exit 0
     
+  fi   
     
 }
