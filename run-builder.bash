@@ -14,11 +14,11 @@ KEYNAME=builder-key
 
 #ssh-keygen -t rsa -N "" -f ${KEYNAME} -C ${USERNAME} || true
 
-ssh-keygen -t rsa -f ~/.ssh/${KEYNAME} -C ${USERNAME}
-chmod 400 ~/.ssh/${KEYNAME}*
+ssh-keygen -t rsa -f ${KEYNAME} -C ${USERNAME}
+chmod 400 ${KEYNAME}*
 
 cat > ssh-keys <<EOF
-${USERNAME}:$(cat ~/.ssh/${KEYNAME}.pub)
+${USERNAME}:$(cat ${KEYNAME}.pub)
 EOF
 
 gcloud compute instances add-metadata ${INSTANCE_NAME} --metadata block-project-ssh-keys=TRUE --metadata-from-file ssh-keys=ssh-keys
@@ -28,4 +28,4 @@ gcloud compute instances describe ${INSTANCE_NAME}
 
 ##gcloud compute ssh --ssh-key-file=ssh-keys/public-ssh-keys.txt test -- ${COMMAND} --dry-run
 
-gcloud compute ssh --ssh-key-file=~/.ssh/${KEYNAME} ${USERNAME}@${INSTANCE_NAME} -- ${COMMAND} --dry-run
+gcloud compute ssh --ssh-key-file=${KEYNAME} ${USERNAME}@${INSTANCE_NAME} -- ${COMMAND} --dry-run
