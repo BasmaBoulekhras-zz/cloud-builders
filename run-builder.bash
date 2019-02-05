@@ -3,9 +3,9 @@
 # Configurable parameters
 [ -z "$COMMAND" ] && echo "Need to set COMMAND" && exit 1;
 
-USERNAME=${USERNAME:-admin}
+USERNAME=${USERNAME:-basmaboulekhras@gmail.com}
 REMOTE_WORKSPACE=${REMOTE_WORKSPACE:-/home/${USERNAME}/workspace/}
-INSTANCE_NAME=${INSTANCE_NAME:test}
+INSTANCE_NAME=${INSTANCE_NAME:-test}
 ZONE=${ZONE:-us-central1-b}
 
 gcloud config set compute/zone ${ZONE}
