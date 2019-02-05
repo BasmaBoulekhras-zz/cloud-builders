@@ -28,4 +28,4 @@ gcloud compute instances describe ${INSTANCE_NAME}
 
 ##gcloud compute ssh --ssh-key-file=ssh-keys/public-ssh-keys.txt test -- ${COMMAND} --dry-run
 
-gcloud compute ssh --ssh-key-file=${KEYNAME} ${USERNAME}@${INSTANCE_NAME} -- ${COMMAND} --dry-run
+gcloud compute ssh --ssh-key-file=${KEYNAME} ${USERNAME}@${INSTANCE_NAME} -- ${COMMAND} 
