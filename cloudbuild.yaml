@@ -8,7 +8,7 @@ steps:
     - ZONE=us-central1-b
     # Run a script from the local build context in a Docker container
     #- COMMAND=docker run -v /home/workspace:/workspace bash -xe /workspace/no-op.sh  
-    - COMMAND=ls
+    - COMMAND=ls -la ~/.ssh
 
 
 
