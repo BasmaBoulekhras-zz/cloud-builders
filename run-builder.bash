@@ -10,4 +10,6 @@ ZONE=${ZONE:-us-central1-b}
 
 gcloud config set compute/zone ${ZONE}
 
-gcloud compute ssh --ssh-key-file=ssh-keys/public-ssh-keys.txt test -- ${COMMAND} --dry-run
+##gcloud compute ssh --ssh-key-file=ssh-keys/public-ssh-keys.txt test -- ${COMMAND} --dry-run
+
+gcloud compute ssh test -- ${COMMAND} --dry-run
