@@ -5,7 +5,7 @@
 
 USERNAME=${USERNAME:-admin}
 REMOTE_WORKSPACE=${REMOTE_WORKSPACE:-/home/${USERNAME}/workspace/}
-INSTANCE_NAME=${INSTANCE_NAME:-builder-$(cat /proc/sys/kernel/random/uuid)}
+INSTANCE_NAME=${INSTANCE_NAME:test}
 ZONE=${ZONE:-us-central1-b}
 
 gcloud config set compute/zone ${ZONE}
