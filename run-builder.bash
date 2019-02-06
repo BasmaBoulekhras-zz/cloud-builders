@@ -15,7 +15,7 @@ KEYNAME=builder-key
 
 ssh-keygen -t rsa -f ${KEYNAME} -C ${USERNAME}
 #ssh-keygen -t rsa -f ~/.ssh/${KEYNAME} -C ${USERNAME}
-chmod 400 ${KEYNAME}*
+chmod 600 ${KEYNAME}*
 #chmod 400 ~/.ssh/${KEYNAME}
 
 cat > ssh-keys <<EOF
