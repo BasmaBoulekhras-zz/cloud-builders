@@ -13,11 +13,13 @@ gcloud config set compute/zone ${ZONE}
 
 KEYNAME=builder-key
 
-ssh-keygen -t rsa -f ${KEYNAME} -C ${USERNAME}
-chmod 400 ${KEYNAME}*
+#ssh-keygen -t rsa -f ${KEYNAME} -C ${USERNAME}
+ssh-keygen -t rsa -f ~/.ssh/${KEYNAME} -C ${USERNAME}
+#chmod 400 ${KEYNAME}*
+chmod 400 ~/.ssh/${KEYNAME}
 
 cat > ssh-keys <<EOF
-${USERNAME}:$(cat ${KEYNAME}.pub)
+${USERNAME}:$(cat ~/.ssh/${KEYNAME}.pub)
 EOF
 
 gcloud compute instances add-metadata ${INSTANCE_NAME} --metadata block-project-ssh-keys=TRUE --metadata-from-file ssh-keys=ssh-keys
@@ -31,7 +33,7 @@ function cleanup {
 }
 
 #Copy the Workspace to the remote instance
-gcloud compute scp --compress --recurse ./ ${USERNAME}@${INSTANCE_NAME}:${REMOTE_WORKSPACE} --ssh-key-file=${KEYNAME}
+gcloud compute scp --compress --recurse ./ ${USERNAME}@${INSTANCE_NAME}:${REMOTE_WORKSPACE} --ssh-key-file=~/.ssh/${KEYNAME}
 
 #ssh connection to the remote instance
-gcloud compute ssh --ssh-key-file=${KEYNAME} ${USERNAME}@${INSTANCE_NAME} -- ${COMMAND} 
+gcloud compute ssh --ssh-key-file=~/.ssh/${KEYNAME} ${USERNAME}@${INSTANCE_NAME} -- ${COMMAND} 
