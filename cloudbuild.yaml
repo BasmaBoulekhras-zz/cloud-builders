@@ -12,7 +12,7 @@ steps:
 substitutions:
     _RELEASE_NAME: 'backend'
     _PATH_CHART: 'k8s/contacts-service/'
-    #
+    
 
 
 
