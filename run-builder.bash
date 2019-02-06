@@ -12,8 +12,6 @@ gcloud config set compute/zone ${ZONE}
 
 KEYNAME=builder-key
 
-#ssh-keygen -t rsa -N "" -f ${KEYNAME} -C ${USERNAME} || true
-
 ssh-keygen -t rsa -f ${KEYNAME} -C ${USERNAME}
 chmod 400 ${KEYNAME}*
 
@@ -26,6 +24,13 @@ gcloud compute instances add-metadata ${INSTANCE_NAME} --metadata block-project-
 #Check if the instance's metadata is updated
 gcloud compute instances describe ${INSTANCE_NAME}
 
-##gcloud compute ssh --ssh-key-file=ssh-keys/public-ssh-keys.txt test -- ${COMMAND} --dry-run
+#Remove any existing files or directories from the remote instance
+function cleanup {
+    rm -rf ${USERNAME}@${INSTANCE_NAME}:${REMOTE_WORKSPACE}
+}
 
+#Copy the Workspace to the remote instance
+gcloud compute scp --compress --recurse ./ ${USERNAME}@${INSTANCE_NAME}:${REMOTE_WORKSPACE} --ssh-key-file=${KEYNAME}
+
+#ssh connection to the remote instance
 gcloud compute ssh --ssh-key-file=${KEYNAME} ${USERNAME}@${INSTANCE_NAME} -- ${COMMAND} 
