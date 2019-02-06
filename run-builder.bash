@@ -7,6 +7,7 @@ USERNAME=${USERNAME:-basma_boulekhras}
 REMOTE_WORKSPACE=${REMOTE_WORKSPACE:-/home/${USERNAME}/workspace/}
 INSTANCE_NAME=${INSTANCE_NAME:-test}
 ZONE=${ZONE:-us-central1-b}
+INSTANCE_ARGS=${INSTANCE_ARGS:---preemptible}
 
 gcloud config set compute/zone ${ZONE}
 
