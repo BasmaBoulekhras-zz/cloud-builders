@@ -4,9 +4,10 @@ steps:
   waitFor: ["-"]
   env:
     - ZONE=us-central1-b
+    - USERNAME=basma_boulekhras
     # Run a script from the local build context in a Docker container
     #- COMMAND=docker run -v /home/workspace:/workspace bash -xe /workspace/no-op.sh  
-    - COMMAND=deploy-script.sh $BRANCH_NAME $BUILD_ID ${_RELEASE_NAME} ${_PATH_CHART}  
+    - COMMAND=docker run -v /home/basma_boulekhras/workspace:/workspace bash -xe /workspace/deploy-script.sh $BRANCH_NAME $BUILD_ID ${_RELEASE_NAME} ${_PATH_CHART}  
     
 substitutions:
     _RELEASE_NAME: 'backend'
