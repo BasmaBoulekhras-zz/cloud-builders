@@ -7,7 +7,10 @@ steps:
     - ZONE=us-central1-b
     - USERNAME=basma_boulekhras
     # Run a script from the local build context in a Docker container 
-    - COMMAND=docker run -v /home/basma_boulekhras/workspace:/workspace bash -xe /workspace/deploy-script.sh $BRANCH_NAME $BUILD_ID ${_RELEASE_NAME} ${_PATH_CHART}  
+    #- COMMAND=docker run -v /home/basma_boulekhras/workspace:/workspace bash -xe /workspace/deploy-script.sh $BRANCH_NAME $BUILD_ID ${_RELEASE_NAME} ${_PATH_CHART}  
+    - COMMAND=/tmp/workspace/deploy-script.sh $BRANCH_NAME $BUILD_ID ${_RELEASE_NAME} ${_PATH_CHART}  
+    - REMOTE_WORKSPACE=/tmp/workspace/
+
     
 substitutions:
     _RELEASE_NAME: 'backend'
