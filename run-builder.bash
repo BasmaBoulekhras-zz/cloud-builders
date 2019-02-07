@@ -48,11 +48,11 @@ gcloud compute scp --compress --recurse ./ ${USERNAME}@${INSTANCE_NAME}:/tmp/${B
 #check
 gcloud compute ssh --ssh-key-file=${KEYNAME} ${USERNAME}@${INSTANCE_NAME} --command "ls -la ${BUILD_ID}-workspace" 
 
-#delete the workspace from the remote instance
-gcloud compute ssh --ssh-key-file=${KEYNAME} ${USERNAME}@${INSTANCE_NAME} --command "rm -rf tmp" 
-
 #ssh connection to the remote instance
 gcloud compute ssh --ssh-key-file=${KEYNAME} ${USERNAME}@${INSTANCE_NAME} -- ${COMMAND} 
+
+#delete the workspace from the remote instance
+gcloud compute ssh --ssh-key-file=${KEYNAME} ${USERNAME}@${INSTANCE_NAME} --command "rm -rf tmp" 
 
 
  
