@@ -54,6 +54,9 @@ gcloud compute ssh --ssh-key-file=${KEYNAME} ${USERNAME}@${INSTANCE_NAME} -- ${C
 #delete the workspace from the remote instance
 gcloud compute ssh --ssh-key-file=${KEYNAME} ${USERNAME}@${INSTANCE_NAME} --command "rm -rf ${REMOTE_WORKSPACE}" 
 
+#check the existing folders in the remote instance
+gcloud compute ssh --ssh-key-file=${KEYNAME} ${USERNAME}@${INSTANCE_NAME} --command "dir" 
+
 
  
 
