@@ -6,7 +6,7 @@
 USERNAME=${USERNAME:-basma_boulekhras}
 #REMOTE_WORKSPACE=${REMOTE_WORKSPACE:-/home/${USERNAME}/workspace/}
 #REMOTE_WORKSPACE=${REMOTE_WORKSPACE:/home/${USERNAME}/tmp/${BUILD_ID}-workspace/}
-REMOTE_WORKSPACE=${REMOTE_WORKSPACE:/home/${USERNAME}/tmp/}
+REMOTE_WORKSPACE=${REMOTE_WORKSPACE:~/home/${USERNAME}/tmp/}
 INSTANCE_NAME=${INSTANCE_NAME:-test}
 ZONE=${ZONE:-us-central1-b}
 INSTANCE_ARGS=${INSTANCE_ARGS:---preemptible}
@@ -38,7 +38,7 @@ function cleanup {
 
 #create the build worksapce
 #gcloud compute ssh --ssh-key-file=${KEYNAME} ${USERNAME}@${INSTANCE_NAME} --command "mkdir /home/${USERNAME}/tmp/${BUILD_ID}-workspace" 
-gcloud compute ssh --ssh-key-file=${KEYNAME} ${USERNAME}@${INSTANCE_NAME} --command "mkdir ${USERNAME}@${INSTANCE_NAME}:${REMOTE_WORKSPACE}/${BUILD_ID}-workspace" 
+gcloud compute ssh --ssh-key-file=${KEYNAME} ${USERNAME}@${INSTANCE_NAME} --command "mkdir ${REMOTE_WORKSPACE}/${BUILD_ID}-workspace" 
 
 #copy the Workspace to the remote instance
 #gcloud compute scp --compress --recurse ./ ${USERNAME}@${INSTANCE_NAME}:${REMOTE_WORKSPACE} --ssh-key-file=${KEYNAME}
