@@ -8,7 +8,6 @@ steps:
     - USERNAME=basma_boulekhras
     - BUILD=$BUILD_ID
     # Run a script from the local build context in a Docker container 
-    #- COMMAND=docker run -v /home/basma_boulekhras/workspace:/workspace bash -xe /workspace/deploy-script.sh $BRANCH_NAME $BUILD_ID ${_RELEASE_NAME} ${_PATH_CHART}  
     #- COMMAND=/home/basma_boulekhras/workspace/deploy-script.sh $BRANCH_NAME $BUILD_ID ${_RELEASE_NAME} ${_PATH_CHART}  
     - COMMAND=/home/basma_boulekhras/workspace/deploy-script.sh 
 
