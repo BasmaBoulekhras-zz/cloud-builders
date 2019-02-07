@@ -2,12 +2,15 @@
 
 # Configurable parameters
 [ -z "$COMMAND" ] && echo "Need to set COMMAND" && exit 1;
+[ -z "$COMMAND2" ] && echo "Need to set COMMAND2" && exit 1;
 
 USERNAME=${USERNAME:-basma_boulekhras}
-REMOTE_WORKSPACE=${REMOTE_WORKSPACE:-/home/${USERNAME}/workspace/}
+#REMOTE_WORKSPACE=${REMOTE_WORKSPACE:-/home/${USERNAME}/workspace/}
+REMOTE_WORKSPACE=${REMOTE_WORKSPACE:-/home/${USERNAME}/tmp/${BUILD_ID}-workspace/}
 INSTANCE_NAME=${INSTANCE_NAME:-test}
 ZONE=${ZONE:-us-central1-b}
 INSTANCE_ARGS=${INSTANCE_ARGS:---preemptible}
+BUILD_ID=${BUILD}
 
 gcloud config set compute/zone ${ZONE}
 
@@ -33,12 +36,16 @@ function cleanup {
     rm -rf ${REMOTE_WORKSPACE}
 }
 
-cleanup
+#create the build worksapce
+gcloud compute ssh --ssh-key-file=${KEYNAME} ${USERNAME}@${INSTANCE_NAME} --command "mkdir ${REMOTE_WORKSPACE}" 
 
-#Copy the Workspace to the remote instance
+#copy the Workspace to the remote instance
 gcloud compute scp --compress --recurse ./ ${USERNAME}@${INSTANCE_NAME}:${REMOTE_WORKSPACE} --ssh-key-file=${KEYNAME}
 
 #ssh connection to the remote instance
 gcloud compute ssh --ssh-key-file=${KEYNAME} ${USERNAME}@${INSTANCE_NAME} -- ${COMMAND} 
+
+#delete the workspace from the remote instance
+cleanup 
 
 
