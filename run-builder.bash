@@ -32,18 +32,18 @@ gcloud compute instances describe ${INSTANCE_NAME}
 
 #Remove any existing files or directories from the remote instance
 function cleanup {
-    rm -rf ${REMOTE_WORKSPACE}
+    rm -rf tmp
     #rm -rf ${REMOTE_WORKSPACE}/${BUILD_ID}-workspace/
 }
 
 #create the build worksapce
 #gcloud compute ssh --ssh-key-file=${KEYNAME} ${USERNAME}@${INSTANCE_NAME} --command "mkdir /home/${USERNAME}/tmp/${BUILD_ID}-workspace" 
-gcloud compute ssh --ssh-key-file=${KEYNAME} ${USERNAME}@${INSTANCE_NAME} --command "mkdir ${REMOTE_WORKSPACE}" 
+gcloud compute ssh --ssh-key-file=${KEYNAME} ${USERNAME}@${INSTANCE_NAME} --command "mkdir /tmp/${BUILD_ID}-workspace" 
 
 #copy the Workspace to the remote instance
 #gcloud compute scp --compress --recurse ./ ${USERNAME}@${INSTANCE_NAME}:${REMOTE_WORKSPACE} --ssh-key-file=${KEYNAME}
 #gcloud compute scp --compress --recurse ./ ${USERNAME}@${INSTANCE_NAME}:/home/${USERNAME}/tmp/${BUILD_ID}-workspace/ --ssh-key-file=${KEYNAME}
-gcloud compute scp --compress --recurse ./ ${USERNAME}@${INSTANCE_NAME}:${REMOTE_WORKSPACE}/ --ssh-key-file=${KEYNAME}
+gcloud compute scp --compress --recurse ./ ${USERNAME}@${INSTANCE_NAME}:/tmp/${BUILD_ID}-workspace/ --ssh-key-file=${KEYNAME}
 
 #ssh connection to the remote instance
 gcloud compute ssh --ssh-key-file=${KEYNAME} ${USERNAME}@${INSTANCE_NAME} -- ${COMMAND} 
