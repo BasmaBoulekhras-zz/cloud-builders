@@ -1,7 +1,7 @@
 #!/bin/bash -xe
 
 ZONE=us-central1-b
-CLUSTER=adolfo-test
+CLUSTER=ingress-test1	
 
 deploy() {
 
