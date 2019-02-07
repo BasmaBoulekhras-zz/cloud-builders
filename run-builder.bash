@@ -32,7 +32,7 @@ gcloud compute instances describe ${INSTANCE_NAME}
 
 #Remove any existing files or directories from the remote instance
 function cleanup {
-    rm -rf tmp
+    rm -rf /${BUILD_ID}-workspace
     #rm -rf ${REMOTE_WORKSPACE}/${BUILD_ID}-workspace/
 }
 
