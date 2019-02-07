@@ -6,7 +6,7 @@
 USERNAME=${USERNAME:-basma_boulekhras}
 BUILD_ID=${BUILD}
 #REMOTE_WORKSPACE=${REMOTE_WORKSPACE:-/home/${USERNAME}/workspace/}
-REMOTE_WORKSPACE=${REMOTE_WORKSPACE:/home/${USERNAME}/tmp/${BUILD_ID}-workspace}
+REMOTE_WORKSPACE=${REMOTE_WORKSPACE:/tmp/${BUILD_ID}-workspace}
 #REMOTE_WORKSPACE=${REMOTE_WORKSPACE:/home/${USERNAME}/tmp/}
 INSTANCE_NAME=${INSTANCE_NAME:-test}
 ZONE=${ZONE:-us-central1-b}
@@ -38,21 +38,21 @@ function cleanup {
 
 #create the build worksapce
 #gcloud compute ssh --ssh-key-file=${KEYNAME} ${USERNAME}@${INSTANCE_NAME} --command "mkdir /home/${USERNAME}/tmp/${BUILD_ID}-workspace" 
-gcloud compute ssh --ssh-key-file=${KEYNAME} ${USERNAME}@${INSTANCE_NAME} --command "mkdir /tmp/${BUILD_ID}-workspace" 
+gcloud compute ssh --ssh-key-file=${KEYNAME} ${USERNAME}@${INSTANCE_NAME} --command "mkdir ${REMOTE_WORKSPACE}" 
 
 #copy the Workspace to the remote instance
 #gcloud compute scp --compress --recurse ./ ${USERNAME}@${INSTANCE_NAME}:${REMOTE_WORKSPACE} --ssh-key-file=${KEYNAME}
 #gcloud compute scp --compress --recurse ./ ${USERNAME}@${INSTANCE_NAME}:/home/${USERNAME}/tmp/${BUILD_ID}-workspace/ --ssh-key-file=${KEYNAME}
-gcloud compute scp --compress --recurse ./ ${USERNAME}@${INSTANCE_NAME}:/tmp/${BUILD_ID}-workspace/ --ssh-key-file=${KEYNAME}
+gcloud compute scp --compress --recurse ./ ${USERNAME}@${INSTANCE_NAME}:${INSTANCE_NAME}/ --ssh-key-file=${KEYNAME}
 
 #check
-gcloud compute ssh --ssh-key-file=${KEYNAME} ${USERNAME}@${INSTANCE_NAME} --command "ls -la /tmp/${BUILD_ID}-workspace" 
+gcloud compute ssh --ssh-key-file=${KEYNAME} ${USERNAME}@${INSTANCE_NAME} --command "ls -la ${REMOTE_WORKSPACE}" 
 
 #ssh connection to the remote instance
 gcloud compute ssh --ssh-key-file=${KEYNAME} ${USERNAME}@${INSTANCE_NAME} -- ${COMMAND} 
 
 #delete the workspace from the remote instance
-gcloud compute ssh --ssh-key-file=${KEYNAME} ${USERNAME}@${INSTANCE_NAME} --command "rm -rf tmp" 
+gcloud compute ssh --ssh-key-file=${KEYNAME} ${USERNAME}@${INSTANCE_NAME} --command "rm -rf ${REMOTE_WORKSPACE}" 
 
 
  
