@@ -43,7 +43,7 @@ gcloud compute ssh --ssh-key-file=${KEYNAME} ${USERNAME}@${INSTANCE_NAME} --comm
 #copy the Workspace to the remote instance
 #gcloud compute scp --compress --recurse ./ ${USERNAME}@${INSTANCE_NAME}:${REMOTE_WORKSPACE} --ssh-key-file=${KEYNAME}
 #gcloud compute scp --compress --recurse ./ ${USERNAME}@${INSTANCE_NAME}:/home/${USERNAME}/tmp/${BUILD_ID}-workspace/ --ssh-key-file=${KEYNAME}
-gcloud compute scp --compress --recurse ./ ${USERNAME}@${INSTANCE_NAME}:${INSTANCE_NAME}/ --ssh-key-file=${KEYNAME}
+gcloud compute scp --compress --recurse ./ ${USERNAME}@${INSTANCE_NAME}:${REMOTE_WORKSPACE}/ --ssh-key-file=${KEYNAME}
 
 #check
 gcloud compute ssh --ssh-key-file=${KEYNAME} ${USERNAME}@${INSTANCE_NAME} --command "ls -la ${REMOTE_WORKSPACE}" 
