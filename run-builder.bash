@@ -29,11 +29,16 @@ gcloud compute instances describe ${INSTANCE_NAME}
 
 #Remove any existing files or directories from the remote instance
 function cleanup {
-    rm -rf ${USERNAME}@${INSTANCE_NAME}:${REMOTE_WORKSPACE}
+    #rm -rf ${USERNAME}@${INSTANCE_NAME}:${REMOTE_WORKSPACE}
+    rm -rf ${REMOTE_WORKSPACE}
 }
+
+cleanup
 
 #Copy the Workspace to the remote instance
 gcloud compute scp --compress --recurse ./ ${USERNAME}@${INSTANCE_NAME}:${REMOTE_WORKSPACE} --ssh-key-file=${KEYNAME}
 
 #ssh connection to the remote instance
 gcloud compute ssh --ssh-key-file=${KEYNAME} ${USERNAME}@${INSTANCE_NAME} -- ${COMMAND} 
+
+
