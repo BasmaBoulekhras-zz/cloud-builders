@@ -3,7 +3,7 @@
 # Configurable parameters
 [ -z "$COMMAND" ] && echo "Need to set COMMAND" && exit 1;
 
-USERNAME=${USERNAME:-basma_boulekhras}
+USERNAME=${USERNAME:-builder-user}
 BUILD_ID=${BUILD}
 #REMOTE_WORKSPACE=${REMOTE_WORKSPACE:-/home/${USERNAME}/workspace/}
 REMOTE_WORKSPACE=${REMOTE_WORKSPACE:-/tmp/${BUILD_ID}-workspace}
