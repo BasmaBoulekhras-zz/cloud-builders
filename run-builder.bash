@@ -2,7 +2,6 @@
 
 # Configurable parameters
 [ -z "$COMMAND" ] && echo "Need to set COMMAND" && exit 1;
-[ -z "$COMMAND2" ] && echo "Need to set COMMAND2" && exit 1;
 
 USERNAME=${USERNAME:-basma_boulekhras}
 #REMOTE_WORKSPACE=${REMOTE_WORKSPACE:-/home/${USERNAME}/workspace/}
