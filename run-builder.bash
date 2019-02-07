@@ -56,6 +56,7 @@ gcloud compute ssh --ssh-key-file=${KEYNAME} ${USERNAME}@${INSTANCE_NAME} --comm
 
 #check the existing folders in the remote instance
 gcloud compute ssh --ssh-key-file=${KEYNAME} ${USERNAME}@${INSTANCE_NAME} --command "dir" 
+#
 
 
  
