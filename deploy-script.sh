@@ -15,4 +15,5 @@ deploy() {
   fi   
 }
 
-deploy $1 $2 $3 $4
+#deploy $1 $2 $3 $4
+deploy 
