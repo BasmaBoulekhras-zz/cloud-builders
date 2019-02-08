@@ -1,7 +1,7 @@
 #!/bin/bash -xe
 
-ZONE=us-central1-a
-CLUSTER=ingress-test1	
+ZONE=northamerica-northeast1-a
+CLUSTER=ellisdon-ist	
 
 deploy() {
 
