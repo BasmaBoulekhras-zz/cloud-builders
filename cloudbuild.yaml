@@ -4,7 +4,7 @@ steps:
   waitFor: ["-"]
   env:
     - INSTANCE_ARGS=--image-project cos-cloud --image-family cos-stable
-    - ZONE=us-central1-b
+    - ZONE=northamerica-northeast1-a	
     - USERNAME=builder-user
     - BUILD=$BUILD_ID
     # Run a script from the local build context in a Docker container 
@@ -15,7 +15,7 @@ substitutions:
     _RELEASE_NAME: 'backend'
     _PATH_CHART: 'k8s/contacts-service/'
     
-    #
+    
     
     
     
